@@ -3,6 +3,23 @@ import cv2
 import numpy as np 
 import matplotlib.pyplot as plt 
 
+def hls_select(img,thrsh=(0,255)):
+    """
+    This function returns the binary output after 
+    applying a color thresholding
+    Inputs: RGB image
+    Output: binary image
+    """
+
+    # Convert the image to hls
+    hls = cv2.cvtColor(img,cv2.COLOR_RGB2HLS)
+
+    binary_output = np.zeros_like(hls[:,:,2])
+
+    binary_output[(hls[:,:,2] > thrsh[0]) & (hls[:,:,2] <= thrsh[1])] = 1
+
+    return binary_output
+
 def sobel_edge_detect(img,kernel_size):
     """
     This function applies a sobel edge detection algorithm
@@ -25,3 +42,14 @@ def sobel_edge_detect(img,kernel_size):
     binary_output[(scaled_sobel >= thresh_min) & (scaled_sobel <= thresh_max)] = 1
 
     return binary_output
+
+
+if __name__ == "__main__":
+
+    # Read the test image
+    test_img = cv2.imread("test_images/straight_lines1.jpg")
+    sbinary = hls_select(test_img,thrsh=(80,255))
+    sxbinary = sobel_edge_detect(test_img,3)
+
+    cv2.imshow(sxbinary)
+    cv2.waitKey(10000)
