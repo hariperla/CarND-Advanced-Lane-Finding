@@ -30,6 +30,7 @@ def cam_calibrate():
     objp = np.zeros((6*9,3),np.float32)
     objp[:,:2] = np.mgrid[0:9,0:6].T.reshape(-1,2)
 
+    # Loop through all the images in the folder
     for i in chessBoardImages:
         i = "camera_cal/" + i
         img = cv2.imread(i)
