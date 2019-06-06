@@ -30,6 +30,8 @@ def sobel_edge_detect(img,kernel_size):
 
     # Convert to a gray scale image
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    thresh_min = 30
+    thresh_max = 100
 
     # Calculate the sobel magnitudes
     sobel_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0)
@@ -47,9 +49,9 @@ def sobel_edge_detect(img,kernel_size):
 if __name__ == "__main__":
 
     # Read the test image
-    test_img = cv2.imread("test_images/straight_lines1.jpg")
-    sbinary = hls_select(test_img,thrsh=(80,255))
+    test_img = cv2.imread("output_images/test_calibration_after.jpg")
+    sbinary = hls_select(test_img,thrsh=(0,255))
     sxbinary = sobel_edge_detect(test_img,3)
 
-    cv2.imshow(sxbinary)
+    cv2.imshow("Color threshold image",sxbinary)
     cv2.waitKey(10000)
