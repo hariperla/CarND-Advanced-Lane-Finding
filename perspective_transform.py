@@ -19,9 +19,9 @@ def perspective_transform(img):
     src_pts = np.float32([[690,450],[1110,img_size[1]],[175,img_size[1]],[595,450]])
 
     # Define an offset for the destination points
-    ofst = 200
-    dst_pts = np.float32([[img_size[0]-offset, 0],[img_size[0]-offset, img_size[1]],
-                      [offset, img_size[1]],[offset, 0]])
+    ofst = 300
+    dst_pts = np.float32([[img_size[0]-ofst, 0],[img_size[0]-ofst, img_size[1]],
+                      [ofst, img_size[1]],[ofst, 0]])
 
     # Calculate the transform matrix
     M = cv2.getPerspectiveTransform(src_pts,dst_pts)
@@ -31,13 +31,14 @@ def perspective_transform(img):
 
     return transformed_image,M
 
-    if __name == "__main__":
-        
-        # Read the image - Replace it with the color/gradient threshold image
-        undist_binary_img = cv2.imread("output_images/test_calibration_after.jpg")
+if __name__ == "__main__":
+    
+    # Read the image
+    undist_binary_img = cv2.imread("output_images/test_after_binarization.jpg")
 
-        warped_image, perspective_matrix = perspective_transform(undist_binary_img)
+    warped_image, perspective_matrix = perspective_transform(undist_binary_img)
+    cv2.imwrite("output_images/test_after_transform.jpg", warped_image)
 
-        # Display the warped image
-        cv2.imshow(warped_image)
-        cv2.waitKey(5000)
+    # Display the warped image
+    cv2.imshow("Warped Image",warped_image)
+    cv2.waitKey(5000)
