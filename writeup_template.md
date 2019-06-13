@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./output_images/undistort_test_image.jpg "Undistorted lane image"
+[image1]: ./output_images/undistort_test_image.jpg "Undistorted_lane_image"
 [image2]: ./test_images/test6.jpg "Road Lane image distorted"
 [image3]: ./output_images/color_gradient_binary.jpg "Color and Gradient threshold output"
 [image4]: ./output_images/binary_warped.jpg "Warp Binary output image"
