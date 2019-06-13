@@ -53,7 +53,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 1. Provide an example of a distortion-corrected image.
 I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
-![alt_text][image2]
+![Alt Text][image2]
 ![alt_text][image1]
 
 #### 2. Example of how to use color transforms, gradients to create a thresholded binary image was obtained
