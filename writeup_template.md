@@ -19,12 +19,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image1]: ./output_images/undistort_test_image.jpg "Undistorted lane image"
+[image2]: ./test_images/test6.jpg "Road Lane image distorted"
+[image3]: ./output_images/color_gradient_binary.jpg "Color and Gradient threshold output"
+[image4]: ./output_images/binary_warped.jpg "Warp Binary output image"
+[image5]: ./output_images/line_fitted_images.jpg "Line fitted lane image"
+[image6]: ./output_images/output_project_video.mp4 "Output Project video"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -43,24 +43,29 @@ You're reading it!
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the second code cell of the IPython notebook called "advanced_lane_finding.ipynb" between lines #94 through #139.  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
-
-![alt text][image1]
+I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  
 
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
+I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
+![alt text][image2]
+![alt text][image1]
+
+#### 2. Example of how to use color transforms, gradients to create a thresholded binary image was obtained
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines #150 through #192. Here's an example of my output for this step. I used a kernel size of 9 for the images to smooth out the edges completely. 
+
+I converted the image from RGB to HLS to use the saturation values for yellow color and also applied a Sobel filter on the x direction to detect vertical lines. I combined both the HLS binary image and the sobel gradient binary image to get a combined thresholded image. Below is the output
 
 ![alt text][image3]
 
