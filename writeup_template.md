@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./output_images/undistort_test_image.jpg"Undistorted_lane_image"
+[image1]: ./output_images/undistort_test_image.jpg "Undistorted_lane_image"
 [image2]: ./test_images/test6.jpg "Road Lane image distorted"
 [image3]: ./output_images/color_gradient_binary.jpg "Color and Gradient threshold output"
 [image4]: ./output_images/binary_warped.jpg "Warp Binary output image"
@@ -53,13 +53,13 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 1. Provide an example of a distortion-corrected image.
 I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
-![alt text][image2]
-![alt text][image1]
+![alt_text][image2]
+![alt_text][image1]
 
 #### 2. Example of how to use color transforms, gradients to create a thresholded binary image was obtained
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
+![alt_text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
@@ -67,7 +67,7 @@ I used a combination of color and gradient thresholds to generate a binary image
 
 I converted the image from RGB to HLS to use the saturation values for yellow color and also applied a Sobel filter on the x direction to detect vertical lines. I combined both the HLS binary image and the sobel gradient binary image to get a combined thresholded image. Below is the output
 
-![alt text][image3]
+![alt_text][image3]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
